@@ -8,6 +8,7 @@ const io = require('socket.io')(server, {
 
 const PORT=3000;
 
+let readyPlayerCount=0;
 
 server.listen(PORT, ()=>{
     console.log(`listening on port ${PORT}...`);
@@ -15,4 +16,11 @@ server.listen(PORT, ()=>{
 
 io.on('connection',(socket)=>{
     console.log(`a user connected as... ${socket.id}`);
+    socket.on('ready',()=>{
+        console.log('Player ready ',socket.id);
+        readyPlayerCount++;
+        if(readyPlayerCount==2){
+            // broadcast
+        }
+    })
 })
