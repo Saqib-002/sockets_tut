@@ -1,12 +1,13 @@
 function listen(io){
+    const pongNameSpace=io.of('/pong')
     let readyPlayerCount=0;
-    io.on('connection',(socket)=>{
+    pongNameSpace.on('connection',(socket)=>{
         console.log(`a user connected as... ${socket.id}`);
         socket.on('ready',()=>{
             console.log('Player ready ',socket.id);
             readyPlayerCount++;
             if(readyPlayerCount%2===0){
-                io.emit('startGame',socket.id);
+                pongNameSpace.emit('startGame',socket.id);
             }
         })
         socket.on('paddleMove',(paddleData)=>{
