@@ -20,7 +20,8 @@ io.on('connection',(socket)=>{
         console.log('Player ready ',socket.id);
         readyPlayerCount++;
         if(readyPlayerCount==2){
-            io.emit('StartGame',socket.id);
+            console.log("REf")
+            io.emit('startGame',socket.id);
         }
     })
 })
