@@ -20,8 +20,10 @@ io.on('connection',(socket)=>{
         console.log('Player ready ',socket.id);
         readyPlayerCount++;
         if(readyPlayerCount==2){
-            console.log("REf")
             io.emit('startGame',socket.id);
         }
     })
+    socket.on('paddleMove',(paddleData)=>{
+        socket.broadcast.emit('paddleMove',paddleData);
+    } )
 })
